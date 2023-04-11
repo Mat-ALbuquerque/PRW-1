@@ -1,0 +1,31 @@
+<?php
+    function mudar_fonemas($text) 
+    {
+        $text = str_replace('P', 'B', $text);
+        $text = str_replace('R', 'L', $text);
+        $text = str_replace('T', 'D', $text);
+        $text = str_replace('J', 'Z', $text);
+        $text = str_replace('F', 'V', $text);
+        $text = str_replace('X', 'S', $text);
+        return $text;
+    }
+    
+    function criptografar_mensag($mensag)
+    {
+        $palavras = explode(' ', $mensag);
+        $palavras = array_reverse($palavras);
+        foreach ($palavras as &$pala)
+        {
+            $pala = mudar_fonemas($pala);
+        }
+        return implode(' ', $palavras);
+    }
+    
+    $N = intval(fgets(STDIN));
+    
+    for ($i = 0; $i < $N; $i++)
+    {
+        $mensag = trim(fgets(STDIN));
+        echo criptografar_mensag($mensag)."\n";
+    }
+?>
